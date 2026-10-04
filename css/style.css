@@ -1,0 +1,132 @@
+/* =========================================================
+   BỘ MÃ GỐC CỦA BẠN
+   ========================================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #dedede;
+    padding: 5px;
+    margin: 15px;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1.95em;
+}
+
+h2 {
+    text-align: center;
+}
+
+li {
+    margin-top: 20px;
+}
+
+img {
+    /* XÓA HOẶC ẨN 2 DÒNG NÀY ĐI */
+    /* border: 5px solid blue; */
+    /* border-radius: 35px; */
+    
+    width: 100%;
+    display: block;
+}
+
+.label {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* =========================================================
+   1. MOBILE FIRST (Giao diện điện thoại)
+   ========================================================= */
+/* Bắt vào thẻ <div class="grid"> trong HTML của bạn */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Lưới 1 cột */
+    gap: 10px; /* Khoảng cách 10px */
+}
+
+/* Cài đặt mặc định cho các thẻ figure bên trong grid */
+.grid figure {
+    margin: 0; 
+    padding: 10px;
+    background-color: #ffffff; /* Nền sáng mặc định để dễ nhìn */
+    border: 5px solid transparent; /* Chuẩn bị viền để có thể đổi màu ở Dark mode */
+    text-align: center;
+}
+
+/* =========================================================
+   2. TABLET VIEW (Giao diện máy tính bảng)
+   ========================================================= */
+@media (min-width: 772px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .grid figure {
+        border-radius: 50%;
+        overflow: hidden;
+        aspect-ratio: 1 / 1; /* Ép tỷ lệ 1:1 để tạo thành vòng tròn hoàn hảo */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .grid figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Đảm bảo ảnh lấp đầy vòng tròn mà không bị méo */
+    }
+    
+    .grid figure:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+/* =========================================================
+   3. LARGE SCREEN VIEW (Giao diện màn hình lớn)
+   ========================================================= */
+@media (min-width: 992px) {
+    .grid figure {
+        border-radius: 0; /* Xóa bỏ bo tròn khỏi tất cả figure */
+    }
+    
+    .grid figure:last-child {
+        grid-column: auto; /* Reset lại thẻ cuối cùng, không cho chiếm 2 cột nữa */
+    }
+    
+    .grid figure:nth-child(3n) {
+        grid-column: 1 / -1; /* Mỗi thẻ thứ 3 sẽ chiếm cả 2 cột */
+    }
+}
+
+/* =========================================================
+   4. PREFERS-REDUCED-MOTION (Giảm chuyển động)
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto; /* Ghi đè dòng "scroll-behavior: smooth;" ở mã gốc của bạn */
+    }
+}
+
+/* =========================================================
+   5. DARK MODE (Chế độ màu tối)
+   ========================================================= */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222222; /* Giúp toàn bộ nền trang web dễ nhìn hơn ở chế độ tối */
+        color: #ffffff; 
+    }
+
+    .grid figure {
+        background-color: #1a1a1a; /* Đổi màu nền figure sang màu tối */
+        color: #ffff99; /* Đổi màu chữ sang màu sáng (hơi vàng) */
+        border-color: #000000; /* Đổi màu viền thẻ figure thành đen */
+    }
+}
